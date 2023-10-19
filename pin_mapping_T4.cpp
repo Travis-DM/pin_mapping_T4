@@ -1,8 +1,6 @@
 #include <Arduino.h>
-//#include "pin_config.h"
 #include "teensy_map.h"
-#include "pin_setting.h"
-#include "can_interface.h"
+#include "pin_mapping_T4.h"
 #include "analog.h"
 #include "gpio.h"
 #include "pwm.h"

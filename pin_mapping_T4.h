@@ -1,5 +1,5 @@
-#ifndef _PIN_SETTING_H_
-#define _PIN_SETTING_H_
+#ifndef _PIN_MAPPING_T4_H_
+#define _PIN_MAPPING_T4_H_
 
 #include <Arduino.h>
 
