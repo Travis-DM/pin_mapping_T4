@@ -112,8 +112,50 @@
 #define _LEDM0      0X40
 #define _LEDM1      0X52
 
-
-
+uint8_t t_pin_def[42] = {
+    0x08,
+    0x08,
+    0x00,
+    0x01,
+    0x10,
+    0x00,
+    0x01,
+    0x0A,
+    0x0A,
+    0x10,
+    0x00,
+    0x0C,
+    0x0C,
+    0x0C,
+    0x0A,
+    0x0A,
+    0x00,
+    0x00,
+    0x40,
+    0x10,
+    0x00,
+    0x00,
+    0x08,
+    0x08,
+    0x0E,
+    0x0E,
+    0x00,
+    0x01,
+    0x10,
+    0x00,
+    0x08,
+    0x08,
+    0x01,
+    0x10,
+    0x01,
+    0x00,
+    0x00,
+    0x00,
+    0x20,
+    0x20,
+    0x00,
+    0x00
+};
 
 bool can0EN(void);
 bool can1EN(void);
@@ -132,8 +174,8 @@ static uint8_t pwmCount;
 //static uint8_t pwm[29];
 
 
-void parsePins(u_int8_t *pinCon, int pinCount);
-void parsePins(u_int8_t *pinCon);
+void parsePins(uint8_t *pinCon, int pinCount);
+void parsePins(uint8_t *pinCon);
 bool usart0EN(void);
 bool usart1EN(void);
 bool usart2EN(void);
@@ -151,4 +193,6 @@ bool led3EN(void);
 bool i2c0EN(void);
 bool i2c1EN(void);
 bool i2c2EN(void);
+
+int readPinMap(uint8_t *pinCon)
 #endif

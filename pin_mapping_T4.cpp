@@ -73,43 +73,34 @@ void parsePins(u_int8_t *pinCon, int pinCount){
             gpio[x].Setup(x,false);
             gpoCount++;
             gpioCount++;
-            debug.printf("Pin: %d is Set as digital output\n",x);
             break;
         case _GPI:
             gpio[x].Setup(x,true);
             gpiCount++;
             gpioCount++;
-            debug.printf("Pin: %d is Set as digital input\n",x);
             break;
         case _CAN:
-            debug.printf("Pin: %d is Set as CAN\n",x);
             switch (x)
             {
                 case 0:
                 case 1:
                     bcan1EN = true;
-                    debug.println("CAN1 Enabled");
                     break;
                 case 22:
                 case 23:
                     bcan0EN = true;
-                    debug.println("CAN0 Enabled");
                     break;
                 case 30:
                 case 31:
                     bcan2EN = true;
-                    debug.println("CAN2 Enabled");
                     break;
             }
             break;
         case _LEDM0:
-            debug.printf("Pin: %d is Set as LED\n",x);
-            
             pinMode(x,OUTPUT);
             bled0EN = true;
             break;
         case _USART:
-            debug.printf("Pin: %d is Set as USART\n",x);
             switch (x)
             {
                 case 0:
@@ -117,108 +108,86 @@ void parsePins(u_int8_t *pinCon, int pinCount){
                     //read config
                     USART0.begin(115200);
                     busart0EN = true;
-                    debug.println("USART0 Enabled");
                     break;
                 case 7:
                 case 8:
                     USART1.begin(115200);
                     busart1EN = true;
-                    debug.println("USART1 Enabled");
                     break;
                 case 14:
                 case 15:
                     USART2.begin(115200);
                     busart2EN = true;
-                    debug.println("USART2 Enabled");
                     break;
                 case 16:
                 case 17:
                     USART3.begin(115200);
                     busart3EN = true;
-                    debug.println("USART3 Enabled");
                     break;
                 case 20:
                 case 21:
                     USART4.begin(115200);
                     busart4EN = true;
-                    debug.println("USART4 Enabled");
                     break;
                 case 24:
                 case 25:
-                    //USART0.begin(115200);
-                    //usart0EN = true;
-                    debug.println("Error USART5 Is USED for I2C");
                     break;
                 case 28:
                 case 29:
                     USART6.begin(115200);
                     busart6EN = true;
-                    debug.println("USART6 Enabled");
                     break;
                 case 34:
                 case 35:
                     USART7.begin(115200);
                     busart7EN = true;
-                    debug.println("USART7 Enabled");
                     break;  
             }
             break;
             case _LIN:
-            debug.printf("Pin: %d is Set as LIN\n",x);
             switch (x)
             {
                 case 0:
                 case 1:
                     USART0.begin(115200);
                     busart0EN = true;
-                    debug.println("LIN0 Enabled");
                     break;
                 case 7:
                 case 8:
                     USART1.begin(115200);
                     busart1EN = true;
-                    debug.println("LIN1 Enabled");
                     break;
                 case 14:
                 case 15:
                     USART2.begin(115200);
                     busart2EN = true;
-                    debug.println("LIN2 Enabled");
                     break;
                 case 16:
                 case 17:
                     USART3.begin(115200);
                     busart3EN = true;
-                    debug.println("LIN3 Enabled");
                     break;
                 case 20:
                 case 21:
                     USART4.begin(115200);
                     busart4EN = true;
-                    debug.println("LIN4 Enabled");
                     break;
                 case 24:
                 case 25:
-                    //USART0.begin(115200);
-                    //usart0EN = true;
-                    debug.println("Error USART5 Is USED for I2C");
                     break;
                 case 28:
                 case 29:
                     USART6.begin(115200);
                     busart6EN = true;
-                    debug.println("LIN6 Enabled");
                     break;
                 case 34:
                 case 35:
                     USART7.begin(115200);
                     busart7EN = true;
-                    debug.println("LIN7 Enabled");
                     break;  
             }
             break;
         case _SPI:
-            debug.printf("Pin: %d is Set as SPI\n",x);
             break;
         case _I2C:
             switch (x)
@@ -226,42 +195,31 @@ void parsePins(u_int8_t *pinCon, int pinCount){
             case 18:
             case 19:
                 bi2c0EN = true;
-                debug.printf("Pin: %d is Set as I2C0\n",x);
                 break;
             case 16:
             case 17:
                 bi2c1EN = true;
-                debug.printf("Pin: %d is Set as I2C1\n",x);
                 break;
             case 24:
             case 25:
                 bi2c2EN = true;
-                debug.printf("Pin: %d is Set as I2C2\n",x);
                 break;
             default:
                 break;
             }
-            debug.printf("Pin: %d is Set as I2C\n",x);
             break;
         case _ADC:
             analog[adcCount].Setup(x,adcCount);
             adcCount++;
-            debug.printf("Pin: %d is Set as ADC\n",x);
             break;
         case _PWM:
             pwm[pwmCount].Setup(x,x+PWM0ID);
             pwmCount++;
-            debug.printf("Pin: %d is Set as PWM\n",x);
             break;
         default:
-            debug.printf("Pin: %d is Unknown\n",x);
             break;
         }
     }
-    debug.printf("There are %d digital out pins\n",gpoCount);
-    debug.printf("There are %d digital in pins\n",gpiCount);
-    debug.printf("There are %d analog in pins\n",adcCount);
-    debug.printf("There are %d pwm pins\n",pwmCount);
 
 }
 
@@ -345,4 +303,19 @@ bool i2c1EN(void)
 bool i2c2EN(void)
 {
     return bi2c2EN;
+}
+
+int readPinMap(uint8_t *pinCon)
+{
+    #ifdef vPMFile
+    for (uint8_t x = 0;x<42;x++)
+    {
+        pinCon[x] = t_pin_def[x];
+    }
+    return 0;
+    #endif
+    //check to see if EEProm is there
+    //read data
+    //is data valid?
+    //if not load defalt data
 }
