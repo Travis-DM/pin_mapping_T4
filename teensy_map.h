@@ -3,9 +3,7 @@
 
 #include <Arduino.h>
 
-#define debug SerialUSB
-#define hostInterface SerialUSB1
-#define cpuTerm SerialUSB2
+#define hostInterface SerialUSB2
 #define USART0  Serial1
 #define USART1  Serial2
 #define USART2  Serial3
