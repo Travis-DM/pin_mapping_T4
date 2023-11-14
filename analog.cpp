@@ -3,6 +3,7 @@
 #include <ADC.h>
 #include <ADC_util.h>
 #include "teensy_map.h"
+#include "debugger.h"
 
 extern ADC *adc;
 Analog::Analog()

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "gpio.h"
 #include "teensy_map.h"
-
+#include "debugger.h"
 
 void Gpio::Setup(uint8_t spin, bool read)
 {

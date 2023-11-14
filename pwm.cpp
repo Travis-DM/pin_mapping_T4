@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "pwm.h"
 #include "teensy_map.h"
+#include "debugger.h"
 
 
 PWM::PWM(/* args */)
