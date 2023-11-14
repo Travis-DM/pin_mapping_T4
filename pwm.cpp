@@ -24,7 +24,7 @@ void PWM::Setup(int s_pin, uint8_t s_pID, uint8_t res)
 }
 void PWM::Write(uint16_t value)
 {
-    debug.printf("Writing %x to pin %d",value,pin);
+    debugger.msg(3,"Writing %x to pin %d",value,pin);
     analogWrite(pin,value);
 }
 void PWM::Set_Resolution(uint8_t res)

@@ -26,14 +26,14 @@ uint16_t Analog::Read()
         value = adc->analogRead(pin);
         packet[2] = (value & 0xff00) >> 8;
         packet[3] = (value & 0XFF);
-        debug.printf("ADC Value from adc %d, pin %d id : %d\n",aID,pin,value);
+        debugger.msg(3,"ADC Value from adc %d, pin %d id : %d\n",aID,pin,value);
     }
     else
     {
         packet[2] = 0XFF;
         packet[3] = 0XFF;
         value = 0xFFFF;
-        debug.printf("ADC %d, is not set as an adc\n",aID);   
+        debugger.msg(3,"ADC %d, is not set as an adc\n",aID);   
     }
     hostInterface.write((byte*)packet,4);
 
