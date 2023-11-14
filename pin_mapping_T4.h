@@ -194,5 +194,5 @@ bool i2c0EN(void);
 bool i2c1EN(void);
 bool i2c2EN(void);
 
-int readPinMap(uint8_t *pinCon)
+int readPinMap(uint8_t *pinCon);
 #endif

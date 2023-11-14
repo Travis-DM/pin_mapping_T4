@@ -1,7 +1,7 @@
 #ifndef _ANALOG_H_
 #define _ANALOG_H_
 #include <Arduino.h>
-
+;
 class Analog
 {
 
