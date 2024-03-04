@@ -16,7 +16,7 @@
 #define VERSIONID   0X30
 
 #define LCDID       0X31 
-
+#define USB_USARTID 0X3C
 #define DEBUGID     0X3D
 
 #define RESETID     0X3E
@@ -64,35 +64,35 @@
 #define ADCDID      0X60
 #define ADCEID      0X61
 #define ADCFID      0X62
+#define ADC10ID     0X63 
+#define ADC11ID     0X64
 
-#define PWM0ID      0X63 
-#define PWM1ID      0X64
-#define PWM2ID      0X65 
-#define PWM3ID      0X66 
-#define PWM4ID      0X67 
-#define PWM5ID      0X68 
-#define PWM6ID      0X69 
-#define PWM7ID      0X6A 
-#define PWM8ID      0X6B 
-#define PWM9ID      0X6C 
-#define PWMAID      0X6D 
-#define PWMBID      0X6E
-#define PWMCID      0X6F 
-#define PWMDID      0X70 
-#define PWMEID      0X71 
-#define PWMFID      0X72 
-#define PWM10ID     0X73 
-#define PWM11ID     0X74 
-#define PWM12ID     0X75
-#define PWM13ID     0X76 
-#define PWM14ID     0X77 
-#define PWM15ID     0X78 
-#define PWM16ID     0X79 
-#define PWM17ID     0X7A 
-#define PWM18ID     0X7B 
-#define PWM19ID     0X7C 
-#define PWM1AID     0X7D 
-#define PWM1BID     0X7E 
+#define PWM0ID      0X65 
+#define PWM1ID      0X66
+#define PWM2ID      0X67 
+#define PWM3ID      0X68 
+#define PWM4ID      0X69 
+#define PWM5ID      0X6A 
+#define PWM6ID      0X6B 
+#define PWM7ID      0X6C 
+#define PWM8ID      0X6D 
+#define PWM9ID      0X6E 
+#define PWMAID      0X6F 
+#define PWMBID      0X70
+#define PWMCID      0X71 
+#define PWMDID      0X72 
+#define PWMEID      0X73 
+#define PWMFID      0X74 
+#define PWM10ID     0X75 
+#define PWM11ID     0X76 
+#define PWM12ID     0X77
+#define PWM13ID     0X78 
+#define PWM14ID     0X79 
+#define PWM15ID     0X7A 
+#define PWM16ID     0X7B 
+#define PWM17ID     0X7C 
+#define PWM18ID     0X7D 
+#define PWM19ID     0X7E 
 
 #define HEARTBEAT   0X7F 
 

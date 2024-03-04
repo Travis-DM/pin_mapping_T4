@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "gpio.h"
 #include "teensy_map.h"
-#include "debugger.h"
 
 void Gpio::Setup(uint8_t spin, bool read)
 {
@@ -29,20 +28,17 @@ uint8_t Gpio::Read()
         {
             //Send 1
             packet[1] = 1;
-            debugger.msg(3,"Pin : %d is HIGH\n", pin);
         }
         else
         {
             packet[1] = 0;
-            debugger.msg(3,"Pin : %d is LOW", pin);
         }
     }
     else
     {
         packet[1] = 0X02;
-        debugger.msg(3,"Pin : %d is not configured as GPIO", pin);
     }
-    hostInterface.write((byte*)packet,2);
+    //hostInterface.write((byte*)packet,2);
     return packet[1];
 }
 
@@ -56,27 +52,23 @@ void Gpio::Write(uint8_t val)
         if(val == 0)
         {
             digitalWrite(pin,LOW);
-            debugger.msg(3,"Pin : %d is LOW",pin);
             packet[1] = 0;
         }
         else
         {
             digitalWrite(pin,HIGH);
-            debugger.msg(3,"Pin : %d is HIGH\n",pin);
             packet[1] = 1;
         }
     }
     else if(readable)
     {
-            debugger.msg(3,"Pin : %d is not set for writing\n",pin);
             packet[1] = 0x03;
     }
     else
     {
         packet[1] = 0X01;
-        debugger.msg(3,"Pin : %d is not configured as GPIO",pin);
     }
-    hostInterface.write((byte*)packet,2);
+    //hostInterface.write((byte*)packet,2);
 }
 
 
