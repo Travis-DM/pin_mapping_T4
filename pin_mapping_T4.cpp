@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include ""
 #include "teensy_map.h"
 #include "pin_mapping_T4.h"
 #include "analog.h"
@@ -57,11 +58,11 @@ void parsePins(u_int8_t *pinCon, int pinCount){
     bi2c1EN = false;
     bi2c2EN = false;
 
-    gpoCount = 0;
-    gpiCount = 0;
-    gpioCount = 0;
-    adcCount = 0;
-    pwmCount = 0;
+    uint8_t gpoCount = 0;
+    uint8_t gpiCount = 0;
+    uint8_t gpioCount = 0;
+    uint8_t adcCount = 0;
+    uint8_t pwmCount = 0;
 
 
     for(int x = 0; x < pinCount;x++)
