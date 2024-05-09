@@ -34,7 +34,7 @@ uint16_t Analog::Read()
         //packet[3] = 0XFF;
         value = 0xFFFF;
     }
-    //SerialUSB2.printf("ADC %x:%x:%x\n\r",pin,aID,value);
+    SerialUSB2.printf("ADC %x:%x:%x\n\r",pin,aID,value);
     //hostInterface.write((byte*)packet,4);
 
     return value;

@@ -16,6 +16,9 @@
 #define VERSIONID   0X30
 
 #define LCDID       0X31 
+
+#define GETCFGID    0X32
+
 #define USB_USARTID 0X3C
 #define DEBUGID     0X3D
 
@@ -97,7 +100,42 @@
 #define HEARTBEAT   0X7F 
 
 
+#define PACKED __attribute__ ((packed))
 
+struct _serial_number_type
+{
+    uint8_t first;
+    uint8_t second;
+    uint8_t third;
+    uint8_t forth;
+}PACKED;
+struct _firware_version_t
+{
+    uint8_t major;
+    uint8_t minor;
+    uint8_t bugfix;
+    uint8_t test;
+}PACKED;
+
+
+struct _sys_info_t
+{
+    _serial_number_type serial_number;
+    _serial_number_type board_id;
+    _firware_version_t  firmware_ver;
+    uint8_t             ports;
+    uint8_t             usbconf;
+    uint16_t            unused;
+    uint16_t            memory_checksum;
+    uint16_t            program_checksum;
+}PACKED;
+
+struct _sys_config_t
+{
+    _sys_info_t      sys_info;
+    uint8_t   pin_config[42];
+    uint8_t   pin_priority[42];
+}PACKED;
 
 
 #define _GPO        0x00
@@ -151,5 +189,10 @@ bool i2c0EN(void);
 bool i2c1EN(void);
 bool i2c2EN(void);
 
-int readPinMap(uint8_t *pinCon);
+//
+int getPinMap(uint8_t *pinCon);
+
+_sys_config_t getSysConfig(void);
+int getPriorityMap(uint8_t *priorityMap);
+
 #endif

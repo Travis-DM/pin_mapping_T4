@@ -1,10 +1,13 @@
 #include <Arduino.h>
-#include ""
 #include "teensy_map.h"
 #include "pin_mapping_T4.h"
 #include "analog.h"
 #include "gpio.h"
 #include "pwm.h"
+#include "test_conf.h"
+
+
+
 
 bool busart0EN;
 bool busart1EN;
@@ -58,11 +61,11 @@ void parsePins(u_int8_t *pinCon, int pinCount){
     bi2c1EN = false;
     bi2c2EN = false;
 
-    uint8_t gpoCount = 0;
-    uint8_t gpiCount = 0;
-    uint8_t gpioCount = 0;
-    uint8_t adcCount = 0;
-    uint8_t pwmCount = 0;
+    gpoCount = 0;
+    gpiCount = 0;
+    gpioCount = 0;
+    adcCount = 0;
+    pwmCount = 0;
 
 
     for(int x = 0; x < pinCount;x++)
@@ -306,17 +309,54 @@ bool i2c2EN(void)
     return bi2c2EN;
 }
 
-int readPinMap(uint8_t *pinCon)
+int getPinMap(uint8_t *pinCon)
 {
     #ifdef vPMFile
     for (uint8_t x = 0;x<42;x++)
     {
-        pinCon[x] = t_pin_def[x];
+        pinCon[x] = testConf::pinTestArray[x];
     }
     return 0;
     #endif
     //check to see if EEProm is there
     //read data
     //is data valid?
-    //if not load defalt data
+    //if not load default data
+}
+int getPriorityMap(uint8_t *priorityMap)
+{
+    #ifdef vPMFile
+    for (uint8_t x = 0;x<42;x++)
+    {
+        priorityMap[x] = testConf::priorityTestArray[x];
+    }
+    return 0;
+    #endif
+}
+_sys_config_t getSysConfig(void)
+{
+    _sys_config_t sysConf;
+#ifdef vPMFile
+    sysConf.sys_info.serial_number.first = testConf::sn_first;
+    sysConf.sys_info.serial_number.second = testConf::sn_second;
+    sysConf.sys_info.serial_number.third = testConf::sn_third;
+    sysConf.sys_info.serial_number.forth = testConf::sn_forth;
+    sysConf.sys_info.board_id.first = testConf::bi_first;
+    sysConf.sys_info.board_id.second = testConf::bi_second;
+    sysConf.sys_info.board_id.third = testConf::bi_third;
+    sysConf.sys_info.board_id.forth = testConf::bi_forth;
+    sysConf.sys_info.firmware_ver.major = testConf::fw_major;
+    sysConf.sys_info.firmware_ver.minor = testConf::fw_minor;
+    sysConf.sys_info.firmware_ver.bugfix = testConf::fw_bugfix;
+    sysConf.sys_info.firmware_ver.test = testConf::fw_test;
+    sysConf.sys_info.ports = testConf::numPorts;
+    sysConf.sys_info.usbconf = testConf::usbConf;
+    sysConf.sys_info.memory_checksum = testConf::mChecksum;
+    sysConf.sys_info.program_checksum = testConf::pChecksum;
+    getPinMap(sysConf.pin_config);
+    getPriorityMap(sysConf.pin_priority);
+#endif
+
+
+    return sysConf;
 }
